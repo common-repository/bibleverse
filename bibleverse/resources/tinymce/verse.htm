@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{$lang_verse_desc}</title>
+	<script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="jscripts/verse.js"></script>
+	<script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/utils/mctabs.js"></script>
+	<script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/utils/form_utils.js"></script>
+	<link href="css/verse.css" rel="stylesheet" type="text/css" />
+	<base target="_self" />
+</head>
+<script>
+	function verse_autofill(src, dest) {
+		if (document.getElementById(dest).value == '') {
+			document.getElementById(dest).value = document.getElementById(src).value;
+		}
+	}
+</script>
+<body onload="tinyMCEPopup.executeOnLoad('init();');" style="display: none">
+    <form onsubmit="insertVerse();return false;" action="#">
+
+		<div class="panel_wrapper">
+			<table border="0" cellpadding="1" cellspacing="0"><tr>
+			<td><img src="images/verse.gif" width="20" height="20"></td>
+			<td><div style="font-family: Arial, Helvetica, sans-serif; color:#666; font-size:18px;">Bible Verse</div></td>
+			</table>
+			<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+					<td nowrap="nowrap"><label for="verse">Verse:</label></td>
+					<td nowrap="nowrap" id="bookcontainer">&nbsp;</td>
+					<td nowrap="nowrap"><input size="3" maxlength="3" type="text" id="start_chapter" name="start_chapter" value="" onchange="verse_autofill('start_chapter', 'end_chapter');" onfocus="this.select();" />:<input size="3" maxlength="3" type="text" id="start_num" name="start_num" value="" onchange="verse_autofill('start_num', 'end_num');" onfocus="this.select();" />&nbsp;-&nbsp;<input size="3" maxlength="3" type="text" id="end_chapter" name="end_chapter" value="" onfocus="this.select();" />:<input size="3" maxlength="3" type="text" id="end_num" name="end_num" value="" onfocus="this.select();" /></td>
+					<td nowrap="nowrap" id="transcontainer">&nbsp;</td>
+					</tr>
+			</table>
+		</div>
+
+		<div class="mceActionPanel">
+			<div style="float: left">
+				<input type="button" id="insert" name="insert" value="{$lang_insert}" onclick="insertVerse();" />
+			</div>
+
+			<div style="float: right">
+				<input type="button" id="cancel" name="cancel" value="{$lang_cancel}" onclick="tinyMCEPopup.close();" />
+			</div>
+		</div>
+	</form>
+</body>
+</html>
